@@ -59,7 +59,7 @@ export function Footer() {
               {featuredServices.map((service) => (
                 <Link
                   key={service.id}
-                  href="/#tratamientos"
+                  href="/tratamientos"
                   className="text-sm text-slate-400 transition-colors hover:text-[var(--brand-gold-light)]"
                 >
                   {service.name}

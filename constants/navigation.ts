@@ -1,28 +1,30 @@
-import type { NavigationItem } from "@/types";
-
-export const NAVIGATION: NavigationItem[] = [
+export const NAVIGATION = [
   {
     label: "Inicio",
     href: "/",
   },
   {
     label: "Tratamientos",
-    href: "/#tratamientos",
+    href: "/tratamientos",
   },
   {
     label: "Profesionales",
-    href: "/#profesionales",
+    href: "/profesionales",
   },
   {
     label: "Tecnología",
-    href: "/#tecnologia",
+    href: "/tecnologia",
+  },
+  {
+    label: "Laboratorio",
+    href: "/laboratorio-digital",
   },
   {
     label: "Ubicaciones",
-    href: "/#ubicaciones",
+    href: "/ubicaciones",
   },
   {
     label: "Contacto",
-    href: "/#contacto",
+    href: "/contacto",
   },
-];
+] as const;

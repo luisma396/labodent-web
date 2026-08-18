@@ -11,7 +11,12 @@ export interface Service {
   name: string;
   description: string;
   category: string;
+
   icon?: ServiceIconName;
   image?: string;
   featured?: boolean;
+
+  longDescription?: string;
+  benefits?: string[];
+  idealFor?: string[];
 }

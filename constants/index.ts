@@ -6,3 +6,5 @@ export { SCHEDULES } from "./schedules";
 export { TECHNOLOGIES } from "./technology";
 export { NAVIGATION } from "./navigation";
 export { IMAGES } from "./images";
+export { LABORATORY_SERVICES } from "./laboratory-services";
+export { LABORATORY_PROCESS } from "./laboratory-process";

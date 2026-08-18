@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import type { Professional } from "@/types";
 
@@ -66,6 +67,15 @@ export function ProfessionalCard({
             </p>
           </div>
         )}
+
+        <div className="mt-6">
+          <Link
+            href={`/profesionales/${professional.id}`}
+            className="inline-flex items-center text-sm font-semibold text-[var(--brand-primary)] transition-colors hover:text-[var(--brand-primary-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary)] focus-visible:ring-offset-2"
+          >
+            Ver perfil →
+          </Link>
+        </div>
       </div>
     </article>
   );

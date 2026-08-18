@@ -5,3 +5,5 @@ export type { Location } from "./location";
 export type { Schedule, SchedulePeriod } from "./schedule";
 export type { Technology } from "./technology";
 export type { NavigationItem } from "./navigation";
+export type { LaboratoryService, LaboratoryIconName } from "./laboratory-service";
+export type { LaboratoryProcess } from "./laboratory-process";

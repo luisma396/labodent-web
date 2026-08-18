@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { SERVICE_ICONS } from "@/components/icons";
 import type { Service } from "@/types";
 
@@ -36,6 +38,15 @@ export function ServiceCard({
         <span className="inline-flex rounded-full bg-[var(--brand-cream)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand-primary)]">
           {service.category}
         </span>
+      </div>
+
+      <div className="mt-5">
+        <Link
+          href={`/tratamientos/${service.id}`}
+          className="inline-flex items-center text-sm font-semibold text-[var(--brand-primary)] transition-colors hover:text-[var(--brand-primary-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary)] focus-visible:ring-offset-2"
+        >
+          Ver tratamiento →
+        </Link>
       </div>
     </article>
   );
