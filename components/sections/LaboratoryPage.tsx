@@ -14,6 +14,8 @@ import {
   LaboratoryServiceCard,
 } from "@/components/cards";
 
+import { LaboratoryCapabilities } from "./LaboratoryCapabilities";
+
 export function LaboratoryPage() {
   return (
     <>
@@ -72,6 +74,8 @@ export function LaboratoryPage() {
           ))}
         </div>
       </Section>
+
+      <LaboratoryCapabilities />
 
       {/* Recepción de casos */}
       <Section className="bg-white py-16 sm:py-20 lg:py-24">

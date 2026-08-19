@@ -20,7 +20,7 @@ export const LABORATORY_PROCESS: LaboratoryProcess[] = [
     step: "03",
     title: "Diseño digital",
     description:
-      "El caso es diseñado digitalmente de acuerdo con la prescripción y los requerimientos indicados por el profesional.",
+    "Fabricación a medida de prótesis, aparatos y piezas dentales a partir del diseño digital y las indicaciones del profesional.",
   },
   {
     id: "fabricacion",

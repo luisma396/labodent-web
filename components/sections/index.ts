@@ -10,3 +10,4 @@ export { TechnologyPage } from "./TechnologyPage";
 export { LocationsPage } from "./LocationsPage";
 export { ContactPage } from "./ContactPage";
 export { LaboratoryPage } from "./LaboratoryPage";
+export { LaboratoryCapabilities } from "./LaboratoryCapabilities";

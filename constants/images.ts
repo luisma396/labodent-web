@@ -1,25 +1,25 @@
 export const IMAGES = {
     hero: {
         main: "/images/hero/hero_labodent01.png",
-     // main: "/images/hero/dental-clinic.webp",
     },
   
     professionals: {
       victor: "/images/professionals/dr_victormelgarejo00.png",
-      //victor: "/images/professionals/victor-melgarejo.webp",
       alice: "/images/professionals/dra_alicegarcete00.png",
-      //alice: "/images/professionals/alice-garcete.webp",
     },
   
     technology: {
-      scanner: "/images/Technologies/scanner_bocal_3D.png",
-      //scanner: "/images/technology/intraoral-scanner.webp",
-      xray: "/images/Technologies/rayox_portatil.png",
-      //xray: "/images/technology/digital-xray.webp",
-      printing3d: "/images/Technologies/impre_3D.png",
-      //printing3d: "/images/technology/3d-printing.webp",
+      scanner: "/images/technologies/scanner.png",
+      xray: "/images/technologies/xray.png",
+      printing3d: "/images/technologies/printing3d.png",
     },
 
+    laboratory: {
+      scanning: "/images/laboratory/scanning.png",
+      design: "/images/laboratory/design.png",
+      manufacturing: "/images/laboratory/manufacturing.png",
+    },
+    /* icon para servicio se maneja online, por lo que no es necesario tenerlo en el proyecto
     services: {
       general: "/icons/services/general.svg",
       orthodontics: "/icons/services/orthodontics.svg",
@@ -28,4 +28,5 @@ export const IMAGES = {
       aesthetics: "/icons/services/aesthetics.svg",
       pediatric: "/icons/services/pediatric.svg",
     },
+    */
   } as const;
