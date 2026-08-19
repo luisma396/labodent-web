@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 
-import { ContactPage } from "@/components/sections";
+import { LocationsPage } from "@/components/sections";
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "Ubicaciones",
   description:
-    "Contacta con LABODENT para solicitar una consulta, conocer nuestras ubicaciones y coordinar tu atención odontológica.",
+    "Conoce las sedes de LABODENT en Ciudad del Este y Tembiapora, junto con los horarios de atención de nuestros profesionales.",
 
   alternates: {
-    canonical: "/contacto",
+    canonical: "/ubicaciones",
   },
 
   openGraph: {
-    title: "Contacto | LABODENT",
+    title: "Ubicaciones | LABODENT",
     description:
-      "Solicita una consulta en LABODENT y coordina tu atención odontológica por WhatsApp.",
-    url: "/contacto",
+      "Consulta las sedes y horarios de atención de LABODENT en Ciudad del Este y Tembiapora.",
+    url: "/ubicaciones",
   },
 };
 
-export default function ContactoPage() {
-  return <ContactPage />;
+export default function UbicacionesPage() {
+  return <LocationsPage />;
 }

@@ -9,6 +9,7 @@ import {
 interface WhatsAppButtonProps {
   label?: string;
   message?: string;
+  phone?: string;
   variant?: ButtonVariant;
   className?: string;
 }
@@ -16,11 +17,14 @@ interface WhatsAppButtonProps {
 export function WhatsAppButton({
   label = "Solicitar consulta",
   message = "Hola, quisiera solicitar una consulta en LABODENT.",
+  phone,
   variant = "primary",
   className = "",
 }: WhatsAppButtonProps) {
+  const whatsappNumber = phone ?? COMPANY.whatsapp;
+
   const whatsappUrl =
-    `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(message)}`;
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <a

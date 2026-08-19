@@ -1,3 +1,7 @@
+import { MapPin } from "lucide-react";
+
+import { WhatsAppButton } from "@/components/ui";
+
 import type {
   Location,
   Professional,
@@ -16,7 +20,7 @@ export function LocationCard({
   professionals,
 }: LocationCardProps) {
   return (
-    <article className="rounded-3xl border border-[var(--brand-border)] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[var(--brand-gold)] hover:shadow-lg">
+    <article className="rounded-3xl border border-[var(--brand-border)] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[var(--brand-gold)] hover:shadow-lg sm:p-8">
       <span className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
         {location.name}
       </span>
@@ -35,6 +39,49 @@ export function LocationCard({
         </p>
       )}
 
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        {location.whatsapp && (
+          <WhatsAppButton
+            phone={location.whatsapp}
+            label="Contactar por WhatsApp"
+            message={`Hola, quisiera solicitar una consulta en LABODENT ${location.city}.`}
+            className="px-5 py-2.5"
+          />
+        )}
+
+        {location.mapUrl && (
+          <a
+            href={location.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center justify-center gap-2
+              rounded-full
+              border border-[var(--brand-primary)]
+              bg-white
+              px-5 py-2.5
+              text-sm font-semibold
+              text-[var(--brand-primary)]
+              transition-all duration-200
+              hover:bg-[var(--brand-primary)]
+              hover:text-white
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[var(--brand-primary)]
+              focus-visible:ring-offset-2
+            "
+          >
+            <MapPin
+              size={18}
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
+
+            Cómo llegar
+          </a>
+        )}
+      </div>
+
       <div className="mt-8 border-t border-[var(--brand-border)] pt-6">
         <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-900">
           Horarios de atención
@@ -43,7 +90,8 @@ export function LocationCard({
         <div className="mt-5 space-y-4">
           {schedules.map((schedule) => {
             const professional = professionals.find(
-              (item) => item.id === schedule.professionalId,
+              (item) =>
+                item.id === schedule.professionalId,
             );
 
             return (
