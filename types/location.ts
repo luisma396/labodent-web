@@ -1,3 +1,13 @@
+export interface LocationHourPeriod {
+  start: string;
+  end: string;
+}
+
+export interface LocationOpeningHours {
+  days: string[];
+  hours: LocationHourPeriod[];
+}
+
 export interface Location {
   id: string;
   name: string;
@@ -15,4 +25,6 @@ export interface Location {
     latitude: number;
     longitude: number;
   };
+
+  openingHours?: LocationOpeningHours[];
 }

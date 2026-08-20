@@ -10,6 +10,7 @@ import {
   Section,
   SectionHeader,
   WhatsAppButton,
+  LocationOpeningHours,
 } from "@/components/ui";
 
 export function ContactPage() {
@@ -155,6 +156,13 @@ export function ContactPage() {
                 registros digitales o consultar sobre diseño y fabricación
                 personalizada.
               </p>
+
+              {LABORATORY_LOCATION.openingHours && (
+                <LocationOpeningHours
+                  openingHours={LABORATORY_LOCATION.openingHours}
+                  className="mt-8 max-w-2xl border-t border-[var(--brand-border)] pt-6"
+                />
+              )}
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <WhatsAppButton

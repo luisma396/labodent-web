@@ -13,6 +13,8 @@ import {
   WhatsAppButton,
 } from "@/components/ui";
 
+import type { Schedule } from "@/types";
+
 interface ProfessionalDetailPageProps {
   params: Promise<{
     slug: string;
@@ -38,12 +40,14 @@ export async function generateMetadata({
     return {};
   }
 
+  const description = `${professional.name}, profesional de LABODENT especializado en ${professional.specialties.join(
+    " y ",
+  )}.`;
+
   return {
     title: professional.name,
 
-    description: `${professional.name}, profesional de LABODENT especializado en ${professional.specialties.join(
-      " y ",
-    )}.`,
+    description,
 
     alternates: {
       canonical: `/profesionales/${professional.id}`,
@@ -51,9 +55,7 @@ export async function generateMetadata({
 
     openGraph: {
       title: `${professional.name} | LABODENT`,
-      description: `${professional.name}, profesional de LABODENT especializado en ${professional.specialties.join(
-        " y ",
-      )}.`,
+      description,
       url: `/profesionales/${professional.id}`,
     },
   };
@@ -77,12 +79,25 @@ export default async function ProfessionalDetailPage({
       schedule.professionalId === professional.id,
   );
 
+  const schedulesByLocation =
+    professionalSchedules.reduce<
+      Record<string, Schedule[]>
+    >((groups, schedule) => {
+      if (!groups[schedule.locationId]) {
+        groups[schedule.locationId] = [];
+      }
+
+      groups[schedule.locationId].push(schedule);
+
+      return groups;
+    }, {});
+
   return (
     <>
       {/* Presentación */}
       <Section className="bg-[var(--brand-cream)] py-12 sm:py-14 lg:py-16">
         <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[360px_1fr]">
-        <div className="relative mx-auto aspect-square w-full max-w-[340px] overflow-hidden rounded-3xl bg-white shadow-sm lg:max-w-none">
+          <div className="relative mx-auto aspect-square w-full max-w-[340px] overflow-hidden rounded-3xl bg-white shadow-sm lg:max-w-none">
             {professional.image ? (
               <Image
                 src={professional.image}
@@ -123,12 +138,14 @@ export default async function ProfessionalDetailPage({
               )}
             </div>
 
-            <p className="mt-6 text-base text-slate-600">
-              <span className="font-semibold text-slate-900">
-                {professional.experience} años
-              </span>{" "}
-              de experiencia profesional.
-            </p>
+            {professional.experience && (
+              <p className="mt-6 text-base text-slate-600">
+                <span className="font-semibold text-slate-900">
+                  {professional.experience} años
+                </span>{" "}
+                de experiencia profesional.
+              </p>
+            )}
           </div>
         </div>
       </Section>
@@ -147,81 +164,100 @@ export default async function ProfessionalDetailPage({
             </p>
 
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {professionalSchedules.map((schedule) => {
-                const location = LOCATIONS.find(
-                  (item) =>
-                    item.id === schedule.locationId,
-                );
+              {Object.entries(
+                schedulesByLocation,
+              ).map(
+                ([
+                  locationId,
+                  locationSchedules,
+                ]) => {
+                  const location = LOCATIONS.find(
+                    (item) =>
+                      item.id === locationId,
+                  );
 
-                return (
-                  <article
-                    key={`${schedule.professionalId}-${schedule.locationId}`}
-                    className="rounded-3xl border border-[var(--brand-border)] bg-[var(--brand-cream)] p-6"
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
-                      {location?.name}
-                    </span>
+                  if (!location) {
+                    return null;
+                  }
 
-                    <h3 className="mt-2 text-xl font-semibold text-slate-900">
-                      {location?.city}
-                    </h3>
+                  return (
+                    <article
+                      key={locationId}
+                      className="rounded-3xl border border-[var(--brand-border)] bg-[var(--brand-cream)] p-6"
+                    >
+                      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
+                        {location.name}
+                      </span>
 
-                    <p className="mt-1 text-sm text-slate-500">
-                      {location?.neighborhood}
-                    </p>
+                      <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                        {location.city}
+                      </h3>
 
-                    {schedule.appointmentOnly ? (
-                      <div className="mt-5">
-                        <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]">
-                          Cirugías programadas
-                        </span>
+                      <p className="mt-1 text-sm text-slate-500">
+                        {location.neighborhood}
+                      </p>
 
-                        <p className="mt-3 text-sm leading-6 text-slate-600">
-                          Atención mediante coordinación previa.
-                        </p>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="mt-5">
-                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                            Días de atención
-                          </p>
+                      <div className="mt-6 space-y-5">
+                        {locationSchedules.map(
+                          (schedule) => {
+                            const scheduleKey = `${schedule.professionalId}-${schedule.locationId}-${schedule.days.join("-")}`;
 
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {schedule.days.map((day) => (
-                              <span
-                                key={day}
-                                className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-[var(--brand-border)]"
-                              >
-                                {day}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="mt-5">
-                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                            Horario
-                          </p>
-
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {schedule.hours.map(
-                              (period) => (
-                                <span
-                                  key={`${period.start}-${period.end}`}
-                                  className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]"
+                            if (
+                              schedule.appointmentOnly
+                            ) {
+                              return (
+                                <div
+                                  key={scheduleKey}
                                 >
-                                  {period.start} – {period.end}
-                                </span>
-                              ),
-                            )}
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </article>
-                );
-              })}
+                                  <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]">
+                                    Cirugías programadas
+                                  </span>
+
+                                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                                    Atención mediante
+                                    coordinación previa.
+                                  </p>
+                                </div>
+                              );
+                            }
+
+                            return (
+                              <div
+                                key={scheduleKey}
+                                className="border-t border-[var(--brand-border)] pt-5 first:border-t-0 first:pt-0"
+                              >
+                                <div>
+                                  <div className="flex flex-wrap gap-2">
+                                    {schedule.days.map((day) => (
+                                      <span
+                                        key={day}
+                                        className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-[var(--brand-border)]"
+                                      >
+                                        {day}
+                                      </span>
+                                    ))}
+                                  </div>
+
+                                  <div className="mt-3 flex flex-wrap gap-2">
+                                    {schedule.hours.map((period) => (
+                                      <span
+                                        key={`${period.start}-${period.end}`}
+                                        className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]"
+                                      >
+                                        {period.start} – {period.end}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          },
+                        )}
+                      </div>
+                    </article>
+                  );
+                },
+              )}
             </div>
           </div>
 

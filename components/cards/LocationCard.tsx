@@ -19,6 +19,18 @@ export function LocationCard({
   schedules,
   professionals,
 }: LocationCardProps) {
+  const professionalSchedules = schedules.reduce<
+    Record<string, Schedule[]>
+  >((groups, schedule) => {
+    if (!groups[schedule.professionalId]) {
+      groups[schedule.professionalId] = [];
+    }
+
+    groups[schedule.professionalId].push(schedule);
+
+    return groups;
+  }, {});
+
   return (
     <article className="rounded-3xl border border-[var(--brand-border)] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[var(--brand-gold)] hover:shadow-lg sm:p-8">
       <span className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
@@ -88,71 +100,80 @@ export function LocationCard({
         </h4>
 
         <div className="mt-5 space-y-4">
-          {schedules.map((schedule) => {
-            const professional = professionals.find(
-              (item) =>
-                item.id === schedule.professionalId,
-            );
+          {Object.entries(professionalSchedules).map(
+            ([professionalId, groupedSchedules]) => {
+              const professional = professionals.find(
+                (item) => item.id === professionalId,
+              );
 
-            return (
-              <div
-                key={`${schedule.professionalId}-${schedule.locationId}`}
-                className="rounded-2xl bg-[var(--brand-cream)] p-5"
-              >
-                <p className="font-semibold text-slate-900">
-                  {professional?.name}
-                </p>
+              if (!professional) {
+                return null;
+              }
 
-                {schedule.appointmentOnly ? (
-                  <div className="mt-3">
-                    <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]">
-                      Cirugías programadas
-                    </span>
+              return (
+                <div
+                  key={professionalId}
+                  className="rounded-2xl bg-[var(--brand-cream)] p-5"
+                >
+                  <p className="font-semibold text-slate-900">
+                    {professional.name}
+                  </p>
 
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      Atención mediante coordinación previa.
-                    </p>
+                  <div className="mt-4 space-y-4">
+                    {groupedSchedules.map((schedule) => {
+                      const scheduleKey = `${schedule.professionalId}-${schedule.locationId}-${schedule.days.join("-")}`;
+
+                      if (schedule.appointmentOnly) {
+                        return (
+                          <div key={scheduleKey}>
+                            <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]">
+                              Cirugías programadas
+                            </span>
+
+                            <p className="mt-3 text-sm leading-6 text-slate-600">
+                              Atención mediante coordinación previa.
+                            </p>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div
+                          key={scheduleKey}
+                          className="border-t border-[var(--brand-border)] pt-4 first:border-t-0 first:pt-0"
+                        >
+                          
+                          <div>
+                            <div className="flex flex-wrap gap-2">
+                              {schedule.days.map((day) => (
+                                <span
+                                  key={day}
+                                  className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-[var(--brand-border)]"
+                                >
+                                  {day}
+                                </span>
+                              ))}
+                            </div>
+
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {schedule.hours.map((period) => (
+                                <span
+                                  key={`${period.start}-${period.end}`}
+                                  className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]"
+                                >
+                                  {period.start} – {period.end}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                ) : (
-                  <>
-                    <div className="mt-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                        Días de atención
-                      </p>
-
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {schedule.days.map((day) => (
-                          <span
-                            key={day}
-                            className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-[var(--brand-border)]"
-                          >
-                            {day}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                        Horario
-                      </p>
-
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {schedule.hours.map((period) => (
-                          <span
-                            key={`${period.start}-${period.end}`}
-                            className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]"
-                          >
-                            {period.start} – {period.end}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            );
-          })}
+                </div>
+              );
+            },
+          )}
         </div>
       </div>
     </article>

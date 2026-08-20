@@ -1,4 +1,5 @@
 import {
+  LABORATORY_LOCATION,
   LABORATORY_PROCESS,
   LABORATORY_SERVICES,
 } from "@/constants";
@@ -7,6 +8,7 @@ import {
   Section,
   SectionHeader,
   WhatsAppButton,
+  LocationOpeningHours,
 } from "@/components/ui";
 
 import {
@@ -138,8 +140,18 @@ export function LaboratoryPage() {
             digitales o consultar sobre diseño y fabricación odontológica.
           </p>
 
+          {LABORATORY_LOCATION.openingHours && (
+            <div className="mx-auto mt-8 max-w-xl rounded-3xl bg-white p-6 text-left text-slate-900">
+              <LocationOpeningHours
+                openingHours={LABORATORY_LOCATION.openingHours}
+                title="Horario del Laboratorio Digital"
+              />
+            </div>
+          )}
+
           <div className="mt-8 flex justify-center">
             <WhatsAppButton
+              phone={LABORATORY_LOCATION.whatsapp}
               label="Coordinar un caso"
               message="Hola, quisiera coordinar un caso con el Laboratorio Digital LABODENT."
               variant="light"
