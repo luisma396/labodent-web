@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { createWhatsAppUrl } from "@/utils/whatsapp";
 
 import {
   COMPANY,
@@ -56,15 +57,17 @@ export function Footer() {
             </h3>
 
             <div className="mt-5 flex flex-col gap-3">
+
               {featuredServices.map((service) => (
                 <Link
                   key={service.id}
-                  href="/tratamientos"
+                  href={`/tratamientos/${service.id}`}
                   className="text-sm text-slate-400 transition-colors hover:text-[var(--brand-gold-light)]"
                 >
                   {service.name}
                 </Link>
               ))}
+
             </div>
           </div>
 
@@ -93,7 +96,7 @@ export function Footer() {
               </p>
 
               <a
-                href={`https://wa.me/${COMPANY.whatsapp}`}
+                href={createWhatsAppUrl(COMPANY.whatsapp)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-1 inline-block text-sm text-slate-400 transition-colors hover:text-[var(--brand-gold-light)]"

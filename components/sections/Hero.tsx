@@ -12,16 +12,17 @@ export function Hero() {
     <section className="relative overflow-hidden bg-white">
       <Container className="py-6 lg:py-8">
         <div className="relative min-h-[560px] overflow-hidden rounded-3xl bg-[var(--brand-cream)] sm:min-h-[calc(100svh-9rem)]">
+
           <Image
             src={IMAGES.hero.main}
             alt="Clínica dental LABODENT"
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 1280px) 100vw, 1200px"
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/70 sm:via-white/90 sm:to-white/30 lg:to-white/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40 sm:via-white/85 sm:to-white/20 lg:via-white/75 lg:to-transparent" />
 
           <div className="relative z-10 flex min-h-[560px] items-center px-4 py-10 sm:min-h-[calc(100svh-9rem)] sm:px-10 lg:px-16">
             <div className="max-w-xl">

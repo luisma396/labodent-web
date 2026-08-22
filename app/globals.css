@@ -14,6 +14,18 @@
 
   --brand-muted: #6b7280;
   --brand-border: #e5e7eb;
+
+  --lab-background: #070707;
+  --lab-surface: #111111;
+  --lab-surface-soft: #181818;
+
+  --lab-gold: #d4af37;
+  --lab-gold-light: #edcf73;
+  --lab-gold-dark: #a88422;
+
+  --lab-text: #ffffff;
+  --lab-muted: #b8b8b8;
+  --lab-border: rgba(212, 175, 55, 0.3);
 }
 
 @theme inline {

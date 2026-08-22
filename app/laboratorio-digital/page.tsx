@@ -5,8 +5,7 @@ import { LaboratoryPage } from "@/components/sections";
 export const metadata: Metadata = {
   title: "Laboratorio Digital",
   description:
-    "Servicios de laboratorio digital odontológico de LABODENT para profesionales y clínicas: escaneo intraoral 3D, diseño digital y fabricación personalizada.",
-
+    "Servicios de laboratorio digital odontológico de LABODENT para profesionales y clínicas: escaneo intraoral 3D, diseño digital y fabricación personalizada de prótesis, aparatos y piezas dentales.",
   alternates: {
     canonical: "/laboratorio-digital",
   },
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Laboratorio Digital | LABODENT",
     description:
-      "Soluciones digitales, escaneo 3D, diseño y fabricación odontológica para profesionales y clínicas.",
+      "Escaneo intraoral 3D, diseño digital y fabricación personalizada de soluciones odontológicas para profesionales y clínicas.",
     url: "/laboratorio-digital",
   },
 };

@@ -1,4 +1,5 @@
 import { COMPANY } from "@/constants";
+import { createWhatsAppUrl } from "@/utils/whatsapp";
 
 import {
   buttonBaseStyles,
@@ -21,10 +22,13 @@ export function WhatsAppButton({
   variant = "primary",
   className = "",
 }: WhatsAppButtonProps) {
-  const whatsappNumber = phone ?? COMPANY.whatsapp;
+  const whatsappNumber =
+    phone ?? COMPANY.whatsapp;
 
-  const whatsappUrl =
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = createWhatsAppUrl(
+    whatsappNumber,
+    message,
+  );
 
   return (
     <a

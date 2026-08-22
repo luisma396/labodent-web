@@ -2,8 +2,7 @@ export const SITE_CONFIG = {
   name: "LABODENT",
   title: "LABODENT | Clínica Dental",
   description:
-    "Atención odontológica integral, tratamientos especializados y tecnología moderna para cuidar tu salud y estética dental.",
-
+    "Clínica dental y laboratorio digital en Ciudad del Este Paraguay. Atención odontológica integral, tratamientos especializados, tecnología moderna y soluciones digitales para profesionales.",
   locale: "es-PY",
   openGraphLocale: "es_PY",
 
@@ -24,7 +23,13 @@ export const SITE_CONFIG = {
     "rehabilitación oral",
     "odontología Ciudad del Este",
     "dentista Ciudad del Este",
-    "odontología Tembiapora",
+    "odontología Tembiaporã",
     "clínica dental Paraguay",
+    "laboratorio dental",
+    "laboratorio digital dental",
+    "escáner intraoral 3D",
+    "diseño dental digital",
+    "prótesis dentales",
+    "carillas dentales",
   ],
 } as const;

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ubicaciones | LABODENT",
     description:
-      "Consulta las sedes y horarios de atención de LABODENT en Ciudad del Este y Tembiapora.",
+      "Consulta las sedes y horarios de atención de LABODENT en Ciudad del Este y Tembiaporã.",
     url: "/ubicaciones",
   },
 };

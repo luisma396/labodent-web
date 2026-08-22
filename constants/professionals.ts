@@ -25,23 +25,3 @@ export const PROFESSIONALS: Professional[] = [
     image: IMAGES.professionals.alice,
   },
 ];
-
-/* import type { Professional } from "@/types";
-
-export const PROFESSIONALS: Professional[] = [
-  {
-    id: "victor-melgarejo",
-    name: "Dr. Victor Melgarejo",
-    title: "Odontólogo",
-    specialties: ["Implantología", "Ortodoncia"],
-    experience: 15,
-  },
-  {
-    id: "alice-garcete",
-    name: "Dra. Alice Garcete",
-    title: "Odontóloga",
-    specialties: ["Endodoncia", "Estética Dental"],
-    experience: 12,
-  },
-];
-*/

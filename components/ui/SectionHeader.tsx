@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   description?: string;
   align?: "left" | "center";
   variant?: "default" | "dark";
+  headingLevel?: "h1" | "h2";
   children?: ReactNode;
 }
 
@@ -15,6 +16,7 @@ export function SectionHeader({
   description,
   align = "left",
   variant = "default",
+  headingLevel = "h2",
   children,
 }: SectionHeaderProps) {
   const alignment =
@@ -38,6 +40,8 @@ export function SectionHeader({
 
   const currentStyles = styles[variant];
 
+  const Heading = headingLevel;
+
   return (
     <div className={`max-w-3xl ${alignment}`}>
       {eyebrow && (
@@ -48,11 +52,11 @@ export function SectionHeader({
         </span>
       )}
 
-      <h2
+      <Heading
         className={`text-3xl font-bold tracking-tight sm:text-4xl ${currentStyles.title}`}
       >
         {title}
-      </h2>
+      </Heading>
 
       {description && (
         <p

@@ -5,7 +5,7 @@ import { ProfessionalsPage } from "@/components/sections";
 export const metadata: Metadata = {
   title: "Profesionales",
   description:
-    "Conoce al equipo profesional de LABODENT, sus especialidades, experiencia y horarios de atención en Ciudad del Este y Tembiapora.",
+  "Conoce al equipo profesional de LABODENT, sus especialidades, experiencia y horarios de atención en Ciudad del Este y Tembiaporã.",
 
   alternates: {
     canonical: "/profesionales",

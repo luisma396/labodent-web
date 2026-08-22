@@ -15,10 +15,12 @@ export function Button({
   children,
   variant = "primary",
   className = "",
+  type = "button",
   ...props
 }: ButtonProps) {
   return (
     <button
+      type={type}
       className={`
         ${buttonBaseStyles}
         ${buttonVariants[variant]}
