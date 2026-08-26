@@ -8,3 +8,4 @@ export { IMAGES } from "./images";
 export { LABORATORY_SERVICES } from "./laboratory-services";
 export { LABORATORY_PROCESS } from "./laboratory-process";
 export {LOCATIONS,LABORATORY_LOCATION } from "./locations";
+export {LABORATORY_RECEPTION_OPTIONS } from "./laboratory-reception";

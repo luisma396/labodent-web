@@ -4,3 +4,6 @@ export { ServiceCard } from "./ServiceCard";
 export { TechnologyCard } from "./TechnologyCard";
 export { LaboratoryServiceCard } from "./LaboratoryServiceCard";
 export { LaboratoryProcessCard } from "./LaboratoryProcessCard";
+export { LaboratoryReceptionCard } from "./LaboratoryReceptionCard";
+export { ProfessionalScheduleCard } from "./ProfessionalScheduleCard";
+export { LaboratoryLocationCard } from "./LaboratoryLocationCard";

@@ -1,11 +1,8 @@
-export interface LocationHourPeriod {
-  start: string;
-  end: string;
-}
+import type { TimePeriod } from "./time-period";
 
 export interface LocationOpeningHours {
   days: string[];
-  hours: LocationHourPeriod[];
+  hours: TimePeriod[];
 }
 
 export interface Location {

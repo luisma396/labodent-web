@@ -5,3 +5,4 @@ export { Section } from "./Section";
 export { SectionHeader } from "./SectionHeader";
 export { WhatsAppButton } from "./WhatsAppButton";
 export { LocationOpeningHours } from "./LocationOpeningHours";
+export { ScheduleDetails } from "./ScheduleDetails";

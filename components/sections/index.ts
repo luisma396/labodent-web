@@ -11,3 +11,5 @@ export { LocationsPage } from "./LocationsPage";
 export { ContactPage } from "./ContactPage";
 export { LaboratoryPage } from "./LaboratoryPage";
 export { LaboratoryCapabilities } from "./LaboratoryCapabilities";
+export { LaboratoryProcessSection } from "./LaboratoryProcessSection";
+export { LaboratoryServicesSection } from "./LaboratoryServicesSection";

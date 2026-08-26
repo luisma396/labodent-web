@@ -14,8 +14,7 @@ export function LaboratoryServiceCard({
     <article
       className="
         group
-        relative
-        overflow-hidden
+        flex h-full flex-col
         rounded-3xl
         border border-[var(--lab-border)]
         bg-[var(--lab-surface-soft)]
@@ -24,7 +23,6 @@ export function LaboratoryServiceCard({
         hover:-translate-y-1
         hover:border-[var(--lab-gold)]
         hover:shadow-xl
-        sm:p-7
       "
     >
       {/* Brillo decorativo */}

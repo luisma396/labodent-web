@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ProfessionalScheduleCard } from "@/components/cards";
 
 import {
   LOCATIONS,
@@ -162,18 +163,11 @@ export default async function ProfessionalDetailPage({
               Consulta los días y horarios de atención de{" "}
               {professional.name} en cada sede de LABODENT.
             </p>
-
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {Object.entries(
-                schedulesByLocation,
-              ).map(
-                ([
-                  locationId,
-                  locationSchedules,
-                ]) => {
+              {Object.entries(schedulesByLocation).map(
+                ([locationId, locationSchedules]) => {
                   const location = LOCATIONS.find(
-                    (item) =>
-                      item.id === locationId,
+                    (item) => item.id === locationId,
                   );
 
                   if (!location) {
@@ -181,80 +175,11 @@ export default async function ProfessionalDetailPage({
                   }
 
                   return (
-                    <article
+                    <ProfessionalScheduleCard
                       key={locationId}
-                      className="rounded-3xl border border-[var(--brand-border)] bg-[var(--brand-cream)] p-6"
-                    >
-                      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand-primary)]">
-                        {location.name}
-                      </span>
-
-                      <h3 className="mt-2 text-xl font-semibold text-slate-900">
-                        {location.city}
-                      </h3>
-
-                      <p className="mt-1 text-sm text-slate-500">
-                        {location.neighborhood}
-                      </p>
-
-                      <div className="mt-6 space-y-5">
-                        {locationSchedules.map(
-                          (schedule) => {
-                            const scheduleKey = `${schedule.professionalId}-${schedule.locationId}-${schedule.days.join("-")}`;
-
-                            if (
-                              schedule.appointmentOnly
-                            ) {
-                              return (
-                                <div
-                                  key={scheduleKey}
-                                >
-                                  <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]">
-                                    Cirugías programadas
-                                  </span>
-
-                                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                                    Atención mediante
-                                    coordinación previa.
-                                  </p>
-                                </div>
-                              );
-                            }
-
-                            return (
-                              <div
-                                key={scheduleKey}
-                                className="border-t border-[var(--brand-border)] pt-5 first:border-t-0 first:pt-0"
-                              >
-                                <div>
-                                  <div className="flex flex-wrap gap-2">
-                                    {schedule.days.map((day) => (
-                                      <span
-                                        key={day}
-                                        className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-[var(--brand-border)]"
-                                      >
-                                        {day}
-                                      </span>
-                                    ))}
-                                  </div>
-
-                                  <div className="mt-3 flex flex-wrap gap-2">
-                                    {schedule.hours.map((period) => (
-                                      <span
-                                        key={`${period.start}-${period.end}`}
-                                        className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-[var(--brand-primary)] ring-1 ring-[var(--brand-border)]"
-                                      >
-                                        {period.start} – {period.end}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          },
-                        )}
-                      </div>
-                    </article>
+                      location={location}
+                      schedules={locationSchedules}
+                    />
                   );
                 },
               )}

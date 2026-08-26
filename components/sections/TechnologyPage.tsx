@@ -1,7 +1,10 @@
 import Link from "next/link";
 
 import { TechnologyCard } from "@/components/cards";
-import { Section, SectionHeader } from "@/components/ui";
+import {
+  Section,
+  SectionHeader,
+} from "@/components/ui";
 import { TECHNOLOGIES } from "@/constants";
 
 export function TechnologyPage() {
@@ -36,40 +39,42 @@ export function TechnologyPage() {
             />
           ))}
         </div>
-
       </Section>
 
       {/* Beneficios */}
-      <Section className="bg-[var(--brand-cream)] py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--brand-primary)]">
-            Flujo digital
-          </span>
-
-          <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl">
-            Tecnología al servicio de cada tratamiento
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            La incorporación de herramientas digitales nos permite trabajar
-            con mayor precisión, mejorar la planificación clínica y ofrecer
-            una experiencia más moderna a nuestros pacientes.
-          </p>
-        </div>
+      <Section className="bg-[var(--brand-cream)] py-12 sm:py-14 lg:py-16">
+        <SectionHeader
+          eyebrow="Flujo digital"
+          title="Tecnología al servicio de cada tratamiento"
+          description="La incorporación de herramientas digitales nos permite trabajar con mayor precisión, mejorar la planificación clínica y ofrecer una experiencia más moderna a nuestros pacientes."
+          align="center"
+        />
       </Section>
 
       {/* Laboratorio Digital */}
       <Section className="bg-white py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-[var(--brand-border)] bg-white p-8 text-center shadow-sm sm:p-10 lg:p-12">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--brand-primary)]">
+        <div
+          className="
+            mx-auto max-w-4xl
+            rounded-3xl
+            border border-[var(--lab-gold)]/30
+            bg-[var(--lab-surface)]
+            p-8
+            text-center
+            shadow-sm
+            sm:p-10
+            lg:p-12
+          "
+        >
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--lab-gold)]">
             Laboratorio Digital
           </span>
 
-          <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
             Tecnología también disponible para profesionales y clínicas
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-300">
             LABODENT cuenta con un laboratorio digital propio para escaneo,
             diseño y fabricación personalizada de prótesis, aparatos y piezas
             dentales prescritas por profesionales.
@@ -78,7 +83,23 @@ export function TechnologyPage() {
           <div className="mt-8">
             <Link
               href="/laboratorio-digital"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--brand-primary)] px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[var(--brand-primary-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-primary)] focus-visible:ring-offset-2"
+              className="
+                inline-flex items-center justify-center
+                rounded-full
+                border border-[var(--lab-gold)]
+                bg-[var(--lab-gold)]
+                px-6 py-3
+                text-sm font-semibold
+                text-black
+                transition-all duration-200
+                hover:bg-black
+                hover:text-[var(--lab-gold)]
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-[var(--lab-gold)]
+                focus-visible:ring-offset-2
+                focus-visible:ring-offset-[var(--lab-surface)]
+              "
             >
               Conocer el Laboratorio Digital
             </Link>
